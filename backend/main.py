@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
 
-import models, schemas, security
+from backend import models, schemas, security
 from backend.database import engine, get_db
 
 # Initialisation
