@@ -1,0 +1,15 @@
+# --- Base de données et Secrets ---
+*.db
+*.sqlite3
+.env
+
+# --- Backend (Python) ---
+backend/venv/
+backend/env/
+__pycache__/
+*.pyc
+
+# --- Frontend (React) ---
+frontend/node_modules/
+frontend/dist/
+.DS_Store
