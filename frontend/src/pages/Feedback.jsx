@@ -15,7 +15,7 @@ function Feedback() {
     if (!plainte) return;
     try {
       // On enverra la plainte au serveur Python plus tard
-      // await axios.post(`http://localhost:8000/contacts/${id}/plainte`, { message: plainte });
+      // await axios.post(`https://digital-scale-crm.onrender.com/contacts/${id}/plainte`, { message: plainte });
       setEnvoye(true);
     } catch (error) {
       alert("Erreur lors de l'envoi du message.");

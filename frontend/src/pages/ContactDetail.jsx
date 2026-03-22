@@ -23,7 +23,7 @@ function ContactDetail() {
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       try {
-        const resContacts = await axios.get('http://localhost:8000/contacts/', config);
+        const resContacts = await axios.get('https://digital-scale-crm.onrender.com/contacts/', config);
         const leContact = resContacts.data.find(c => c.id === parseInt(id));
         
         if (leContact) {
@@ -31,7 +31,7 @@ function ContactDetail() {
           setDonneesEdition(leContact); // On prépare les données pour le formulaire de modif
           
           try {
-              const resNotes = await axios.get(`http://localhost:8000/contacts/${id}/notes/`, config);
+              const resNotes = await axios.get(`https://digital-scale-crm.onrender.com/contacts/${id}/notes/`, config);
               setNotes(resNotes.data);
           } catch (e) { console.log("Aucune note."); }
         } else {
@@ -52,7 +52,7 @@ function ContactDetail() {
   const changerStatut = async (nouveauStatut) => {
     const token = localStorage.getItem('badge_vip');
     try {
-      await axios.put(`http://localhost:8000/contacts/${id}/statut`, { statut: nouveauStatut }, { headers: { Authorization: `Bearer ${token}` } });
+      await axios.put(`https://digital-scale-crm.onrender.com/contacts/${id}/statut`, { statut: nouveauStatut }, { headers: { Authorization: `Bearer ${token}` } });
       setContact({ ...contact, statut: nouveauStatut });
     } catch (error) { console.error(error); }
   };
@@ -62,7 +62,7 @@ function ContactDetail() {
     if (!nouvelleNote.trim()) return;
     const token = localStorage.getItem('badge_vip');
     try {
-      const res = await axios.post(`http://localhost:8000/contacts/${id}/notes/`, { contenu: nouvelleNote }, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.post(`https://digital-scale-crm.onrender.com/contacts/${id}/notes/`, { contenu: nouvelleNote }, { headers: { Authorization: `Bearer ${token}` } });
       setNotes([...notes, res.data]);
       setNouvelleNote('');
     } catch (error) { console.error(error); }
@@ -72,7 +72,7 @@ function ContactDetail() {
   const sauvegarderModifications = async () => {
     const token = localStorage.getItem('badge_vip');
     try {
-      const res = await axios.put(`http://localhost:8000/contacts/${id}`, donneesEdition, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.put(`https://digital-scale-crm.onrender.com/contacts/${id}`, donneesEdition, { headers: { Authorization: `Bearer ${token}` } });
       setContact(res.data);
       setModeEdition(false); // On quitte le mode édition
     } catch (error) {
@@ -86,7 +86,7 @@ function ContactDetail() {
     if (window.confirm("⚠️ Êtes-vous sûr de vouloir supprimer définitivement ce client ? Tout son historique sera effacé.")) {
         const token = localStorage.getItem('badge_vip');
         try {
-            await axios.delete(`http://localhost:8000/contacts/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+            await axios.delete(`https://digital-scale-crm.onrender.com/contacts/${id}`, { headers: { Authorization: `Bearer ${token}` } });
             navigate('/dashboard'); // Retour au bercail après suppression
         } catch (error) {
             console.error(error);

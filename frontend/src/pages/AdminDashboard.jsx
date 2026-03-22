@@ -11,7 +11,7 @@ function AdminDashboard() {
     if (!token) { navigate('/login'); return; }
 
     try {
-      const res = await axios.get('http://localhost:8000/admin/utilisateurs', {
+      const res = await axios.get('https://digital-scale-crm.onrender.com/admin/utilisateurs', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUtilisateurs(res.data);
@@ -28,7 +28,7 @@ function AdminDashboard() {
   const changerStatut = async (id, nouveauStatut) => {
     const token = localStorage.getItem('badge_vip');
     try {
-      await axios.put(`http://localhost:8000/admin/utilisateurs/${id}/abonnement?nouveau_statut=${nouveauStatut}`, {}, {
+      await axios.put(`https://digital-scale-crm.onrender.com/admin/utilisateurs/${id}/abonnement?nouveau_statut=${nouveauStatut}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       chargerUtilisateurs(); // On recharge la liste pour voir le changement

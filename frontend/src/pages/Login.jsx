@@ -20,8 +20,8 @@ function Login() {
       params.append('username', email); // FastAPI exige le mot "username" (même pour un email)
       params.append('password', password); // FastAPI exige le mot "password"
 
-      // 2. L'ENVOI : On précise bien dans les "headers" qu'on envoie un formulaire
-      const res = await axios.post('http://localhost:8000/login', params, {
+      // 2. L'ENVOI : On utilise ton nouveau lien Render !
+      const res = await axios.post('https://digital-scale-crm.onrender.com/login', params, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }

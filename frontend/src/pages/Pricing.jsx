@@ -48,7 +48,7 @@ function Pricing() {
 
     try {
         // 1. On demande le lien de paiement au serveur Python
-        const reponse = await axios.post('http://localhost:8000/stripe/create-checkout', 
+        const reponse = await axios.post('https://digital-scale-crm.onrender.com/stripe/create-checkout', 
             { plan_id: planId },
             { headers: { Authorization: `Bearer ${token}` } }
         );

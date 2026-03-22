@@ -30,7 +30,7 @@ function AddContact() {
 
     try {
       // On envoie les données au serveur Python
-      await axios.post('http://localhost:8000/contacts/', {
+      await axios.post('https://digital-scale-crm.onrender.com/contacts/', {
         ...formData,
         montant_offre: formData.montant_offre ? parseFloat(formData.montant_offre) : 0
       }, config);

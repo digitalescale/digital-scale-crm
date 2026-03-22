@@ -23,7 +23,7 @@ function Profil() {
       if (!token) return navigate('/login');
 
       try {
-        const reponse = await axios.get('http://localhost:8000/utilisateurs/moi', {
+        const reponse = await axios.get('https://digital-scale-crm.onrender.com/utilisateurs/moi', {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -55,7 +55,7 @@ function Profil() {
     const token = localStorage.getItem('badge_vip');
     
     try {
-      await axios.put('http://localhost:8000/utilisateurs/moi', profil, {
+      await axios.put('https://digital-scale-crm.onrender.com/utilisateurs/moi', profil, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage({ text: '✅ Profil mis à jour avec succès !', type: 'success' });

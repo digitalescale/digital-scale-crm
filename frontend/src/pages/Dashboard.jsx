@@ -20,7 +20,7 @@ function Dashboard() {
       if (!token) return navigate('/login');
 
       try {
-        const reponse = await axios.get('http://localhost:8000/contacts/', {
+        const reponse = await axios.get('https://digital-scale-crm.onrender.com/contacts/', {
           headers: { Authorization: `Bearer ${token}` }
         });
         

@@ -13,7 +13,7 @@ function Register() {
     e.preventDefault();
     try {
       // 🟢 CORRECTION : On envoie les données complètes pour ne pas faire planter FastAPI
-      await axios.post('http://localhost:8000/utilisateurs/', {
+      await axios.post('https://digital-scale-crm.onrender.com/utilisateurs/', {
         email: email,
         mot_de_passe: password,
         nom_entreprise: nomEntreprise,

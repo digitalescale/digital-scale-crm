@@ -35,13 +35,13 @@ function Facture() {
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       try {
-        const resContacts = await axios.get('http://localhost:8000/contacts/', config);
+        const resContacts = await axios.get('https://digital-scale-crm.onrender.com/contacts/', config);
         const leContact = resContacts.data.find(c => c.id === parseInt(id));
         if (!leContact) { setErreur("Client introuvable."); setIsLoading(false); return; }
 
         let infosAgence = { nom_entreprise: 'Mon Agence', email: '', telephone_compte: '' };
         try {
-            const resMoi = await axios.get('http://localhost:8000/utilisateurs/moi', config);
+            const resMoi = await axios.get('https://digital-scale-crm.onrender.com/utilisateurs/moi', config);
             infosAgence = resMoi.data;
         } catch (e) { console.warn("Infos agence non trouvées"); }
 

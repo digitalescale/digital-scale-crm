@@ -14,7 +14,7 @@ function SocialMedia() {
     
     const token = localStorage.getItem('badge_vip');
     try {
-      const reponse = await axios.post('http://localhost:8000/social/publier', {
+      const reponse = await axios.post('https://digital-scale-crm.onrender.com/social/publier', {
         texte: textePost,
         reseaux: reseaux
       }, {
