@@ -1,5 +1,7 @@
 import os
 import jwt
+from backend.email_service import envoyer_email_test
+from fastapi import BackgroundTasks
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from fastapi import FastAPI, Depends, HTTPException, status
@@ -165,3 +167,11 @@ def ajouter_note(contact_id: int, note: schemas.NoteAppelCreation, db: Session =
     db.commit()
     db.refresh(nouvelle)
     return nouvelle
+
+@app.post("/test-email")
+def test_envoi_email(background_tasks: BackgroundTasks):
+    # ⚠️ REMPLACE CECI par l'adresse email avec laquelle tu t'es inscrit sur Resend
+    adresse_de_test = "contact@solution-rsi.ca" 
+    
+    background_tasks.add_task(envoyer_email_test, adresse_de_test)
+    return {"message": "Le facteur est en route !"}
