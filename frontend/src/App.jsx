@@ -26,6 +26,7 @@ function App() {
         <Route path="/contact/:id/facture" element={<Facture />} />
         <Route path="/google-business" element={<GoogleBusiness />} />
         <Route path="/add-contact" element={<AddContact />} />
+        <Route path="/nouveau-contact" element={<AddContact />} />
         <Route path="/profil" element={<Profil />} />
       </Routes>
     </BrowserRouter>
