@@ -158,6 +158,14 @@ def lire_notes(contact_id: int, db: Session = Depends(get_db), u: models.Utilisa
     if not contact: raise HTTPException(status_code=404, detail="Introuvable")
     return db.query(models.NoteAppel).filter(models.NoteAppel.contact_id == contact.id).all()
 
+@app.post("/test-email")
+def test_envoi_email(background_tasks: BackgroundTasks):
+    # ⚠️ REMPLACE CECI par l'adresse email avec laquelle tu t'es inscrit sur Resend
+    adresse_de_test = "contact@solution-rsi.ca" 
+    
+    background_tasks.add_task(envoyer_email_test, adresse_de_test)
+    return {"message": "Le facteur est en route !"}
+
 @app.post("/contacts/{contact_id}/notes/", response_model=schemas.NoteAppelReponse)
 def ajouter_note(contact_id: int, note: schemas.NoteAppelCreation, db: Session = Depends(get_db), u: models.Utilisateur = Depends(get_utilisateur_actuel)):
     contact = db.query(models.Contact).filter(models.Contact.id == contact_id, models.Contact.proprietaire_id == u.id).first()
@@ -168,10 +176,3 @@ def ajouter_note(contact_id: int, note: schemas.NoteAppelCreation, db: Session =
     db.refresh(nouvelle)
     return nouvelle
 
-@app.post("/test-email")
-def test_envoi_email(background_tasks: BackgroundTasks):
-    # ⚠️ REMPLACE CECI par l'adresse email avec laquelle tu t'es inscrit sur Resend
-    adresse_de_test = "contact@solution-rsi.ca" 
-    
-    background_tasks.add_task(envoyer_email_test, adresse_de_test)
-    return {"message": "Le facteur est en route !"}
